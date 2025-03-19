@@ -1,0 +1,224 @@
+import java.sql.SQLOutput;
+import java.util.Scanner;
+
+public class Main {
+    static final double DESCUENTO_ESPECIAL = 0.10;
+    public static void main(String[] args) {
+        Scanner num= new Scanner(System.in);
+        System.out.println("ingrese el numero del ejercisio ");
+        int respuesta= num.nextInt();
+        switch (respuesta){
+            case 1:
+                System.out.println("ingrese el año para saber si es bisisesto o no ");
+                int año= num.nextInt();
+                if ((año % 4 == 0 && año % 100 != 0) || (año % 400 == 0)) {
+                    System.out.println(año + " es bisiesto.");
+                } else {
+                    System.out.println(año + " no es bisiesto.");
+                }
+            case 2:
+                System.out.println("ingrese 3 numeros");
+                int nume=num.nextInt();
+                int nume1=num.nextInt();
+                int nume2=num.nextInt();
+                int mayor=nume;
+                if(nume1>mayor){
+                    mayor=nume1;
+                }
+                if(nume2>mayor){
+                    mayor=nume2;
+                }
+                System.out.println( " el numero mayor es "+ mayor);
+                // < >)
+            case 3:
+                System.out.println("ingrese su edad ");
+                int edad= num.nextInt();
+                if(edad <=12){
+                    System.out.println("Menor de 12 años: Niño");
+                }
+                if(edad >= 12 && edad <= 17 ){
+                    System.out.println("Entre 12 y 17 años: Adolescente");
+                }
+                if(edad >= 18 && edad <= 59 ){
+                    System.out.println("Entre 18 y 59 años: Adulto");
+                }
+                if(edad >= 60 ){
+                    System.out.println("60 años o más: Adulto mayor");
+                }
+            case 4:
+                System.out.println("ingrese el precio del producto ");
+                int precio= num.nextInt();
+                num.nextLine();
+                System.out.println("ingrese la categoria ");
+                String categoria= num.nextLine();
+                if(categoria.equalsIgnoreCase("a")){
+                    double descuento= precio* 0.10;
+                    double preciofinal= precio- descuento;
+                    System.out.println("precio final del producto es de "+ preciofinal);
+                }
+                if(categoria.equalsIgnoreCase("b")){
+                    double descuento1= precio* 0.15;
+                    double preciofinal1= precio- descuento1;
+                    System.out.println("precio final del producto es de "+ preciofinal1);
+                }
+                if(categoria.equalsIgnoreCase("c")){
+                    double descuento2= precio* 0.20;
+                    double preciofinal2= precio- descuento2;
+                    System.out.println("precio final del producto es de "+ preciofinal2);
+                }
+            case 5:
+                int cont=0;
+                int cont1=0;
+                int numer=0;
+                do{
+                    System.out.println("ingrese numero aleatorios ");
+                    numer= num.nextInt();
+                    if(numer% 2==0){
+                        cont+= numer;
+                    }
+                    if(numer%2==1){
+                        cont1++;
+                    }
+                }while (numer !=0);
+                System.out.println("total de numero pares "+ cont);
+                System.out.println("total de numero inpares "+ cont1);
+                // < >)
+            case 6:
+                cont=0;
+                cont1=0;
+                int cont2=0;
+                for(int i =1; i<= 10; i++){
+                    System.out.println("ingrese el numero "+i);
+                    int diez=num.nextInt();
+                    if(diez==0){
+                        cont++;
+                    }
+                    if(diez>0){
+                        cont1++;
+                    } if(diez<0){
+                        cont2++;
+                    }
+                }
+                System.out.println("total de numero 0 "+ cont);
+                System.out.println("total de numeros positivos "+ cont1);
+                System.out.println("total de numero negativos "+cont2);
+            case 7:
+                int whi=0;
+                do{
+                    System.out.println("ingrese numero entre 0 y 10");
+                    whi= num.nextInt();
+                    if(whi<0 || whi>10){
+                        System.out.println("numero incorrecto");
+                    }
+                }while(whi<0 || whi>10);
+                System.out.println("numero correcto");
+            case 8:
+                System.out.print("Ingrese el precio base del producto: ");
+                double precioBase = num.nextDouble();
+
+                System.out.print("Ingrese el porcentaje de impuesto");
+                double impuesto = num.nextDouble();
+
+                System.out.print("Ingrese el porcentaje de descuento");
+                double descuento = num.nextDouble();
+
+                double precioFinal = calcularPrecioFinal(precioBase, impuesto, descuento);
+                System.out.println("El precio final del producto es: " + precioFinal);
+            case 9:
+                System.out.print("Ingrese el precio del producto: ");
+                double precioProducto = num.nextDouble();
+
+                System.out.print("Ingrese el peso del paquete en kg: ");
+                double peso = num.nextDouble();
+
+                System.out.print("Ingrese la zona de envío (Nacional/Internacional): ");
+                num.nextLine();
+                String zona = num.nextLine();
+
+                double costoEnvio = calcularCostoEnvio(peso, zona);
+                System.out.println("El costo de envío es: " + costoEnvio);
+
+                double total = calcularTotalCompra(precioProducto, costoEnvio);
+                System.out.println("El total a pagar es: " + total);
+            case 10:
+                System.out.print("Ingrese el stock actual del producto: ");
+                int stockActual = num.nextInt();
+
+                System.out.print("Ingrese la cantidad vendida: ");
+                int cantidadVendida = num.nextInt();
+
+                System.out.print("Ingrese la cantidad recibida: ");
+                int cantidadRecibida = num.nextInt();
+
+                int nuevoStock = actualizarStock(stockActual, cantidadVendida, cantidadRecibida);
+                System.out.println("El nuevo stock del producto es: " + nuevoStock);
+            case 11:
+                System.out.print("Ingrese el precio del producto: ");
+                double precia =num.nextDouble();
+                calcularDescuentoEspecial(precia);
+            case 12:
+                double[] precios = {199.99, 299.5, 149.75, 399.0, 89.99};
+                System.out.println("Precios originales:");
+                for (double prec : precios) {
+                    System.out.println("Precio: $" + prec);
+                }
+
+                precios[2] = 129.99;
+
+                System.out.println("\nPrecios modificados:");
+                for (double prec : precios) {
+                    System.out.println("Precio: $" + prec);
+                }
+            case 13:
+                double[] pre = {199.99, 299.5, 149.75, 399.0, 89.99};
+
+                System.out.println("Precios originales:");
+                mostrarPreciosOriginales(pre, 0);
+
+                pre[2] = 129.99;
+
+                System.out.println("\nPrecios modificados:");
+                mostrarPreciosModificados(pre, 0);
+        }
+    }
+    public static double calcularPrecioFinal(double precioBase, double impuesto, double descuento) {
+        double precioFinal = precioBase + (precioBase * impuesto) - (precioBase * descuento);
+        return precioFinal;
+        }
+    public static double calcularCostoEnvio(double peso, String zona) {
+        double costoEnvio = 0.0;
+        if (zona.equalsIgnoreCase("Nacional")) {
+            costoEnvio = peso * 5;
+        } else if (zona.equalsIgnoreCase("Internacional")) {
+            costoEnvio = peso * 10;
+        }
+        return costoEnvio;
+    }
+
+
+    public static double calcularTotalCompra(double precioProducto, double costoEnvio) {
+        return precioProducto + costoEnvio;
+    }
+    public static int actualizarStock(int stockActual, int cantidadVendida, int cantidadRecibida) {
+        return stockActual - cantidadVendida + cantidadRecibida;
+    }
+    public static void calcularDescuentoEspecial(double precio) {
+        double descuentoAplicado = precio * DESCUENTO_ESPECIAL;
+        double precioFinal = precio - descuentoAplicado;
+        System.out.println("El descuento especial aplicado es: " + descuentoAplicado);
+        System.out.println("El precio final con descuento es: " + precioFinal);
+    }
+    public static void mostrarPreciosOriginales(double[] precios, int index) {
+        if (index < precios.length) {
+            System.out.println("Precio: $" + precios[index]);
+            mostrarPreciosOriginales(precios, index + 1);
+        }
+    }
+
+    public static void mostrarPreciosModificados(double[] precios, int index) {
+        if (index < precios.length) {
+            System.out.println("Precio: $" + precios[index]);
+            mostrarPreciosModificados(precios, index + 1);
+        }
+    }
+}
